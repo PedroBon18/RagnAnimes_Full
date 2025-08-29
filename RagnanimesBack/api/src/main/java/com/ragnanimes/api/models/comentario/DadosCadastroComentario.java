@@ -7,7 +7,8 @@ public record DadosCadastroComentario(
     String autor,
     Anime anime,
     String conteudo,
-    String creiadoEm
+    String creiadoEm,
+    boolean ativo
 ) {
     
 }

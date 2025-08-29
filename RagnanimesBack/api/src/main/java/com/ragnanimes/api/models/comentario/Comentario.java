@@ -6,7 +6,6 @@ import com.ragnanimes.api.models.usuario.Usuario;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.*;
 
 @Getter
 @Setter
@@ -20,6 +19,7 @@ public class Comentario {
     private String autor;
     private String conteudo;
     private String creiadoEm;
+    private boolean ativo = true;
     
     @ManyToOne
     @JoinColumn(name = "anime_id")

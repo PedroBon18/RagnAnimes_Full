@@ -19,6 +19,7 @@ public class Usuario {
     private String dataCriacao;
     private String email;
     private String imagem;
+    private boolean ativo = true;
     @Enumerated(EnumType.STRING)
     private Role role;
     

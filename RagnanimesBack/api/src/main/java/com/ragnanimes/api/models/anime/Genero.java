@@ -8,5 +8,6 @@ public enum Genero {
     FICCAO,
     ROMANCE,
     SUSPENSE,
-    TERROR
+    TERROR,
+    ISEKAI
 }

@@ -8,7 +8,8 @@ public record DadosAtualizadoAnime(
     String sinopse,
     Genero genero,
     String anoLancamento,
-    String trailer
+    String trailer,
+    boolean ativo
 ) {
     
 }

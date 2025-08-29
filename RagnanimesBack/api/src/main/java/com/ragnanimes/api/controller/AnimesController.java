@@ -1,8 +1,10 @@
 package com.ragnanimes.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +15,17 @@ import java.util.*;
 import com.ragnanimes.api.models.anime.Anime;
 import com.ragnanimes.api.models.anime.AnimeRepository;
 import com.ragnanimes.api.models.anime.DadosCadastroAnime;
+import com.ragnanimes.api.models.likes.LikesRepository;
+import com.ragnanimes.api.models.anime.AnimeComLikesDTO;
 
 @RestController
 @RequestMapping("/anime")
 public class AnimesController {
     @Autowired
     private AnimeRepository repository;
+
+    @Autowired
+    private LikesRepository likesRepository;
 
     @PostMapping
     @Transactional
@@ -29,4 +36,28 @@ public class AnimesController {
     public List<Anime> getAllAnimes() {
         return repository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AnimeComLikesDTO> getAnimeComLikes(@PathVariable Integer id) {
+        Optional<Anime> animeOpt = repository.findById(id);
+        if (animeOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<com.ragnanimes.api.models.likes.Likes> likes = likesRepository.findByAnimeId(id);
+        AnimeComLikesDTO dto = new AnimeComLikesDTO(animeOpt.get(), likes);
+        return ResponseEntity.ok(dto);
+    }
+    @PostMapping("/update/{id}")
+    @Transactional
+    public ResponseEntity<Anime> updateAnime(@PathVariable Integer id, @RequestBody com.ragnanimes.api.models.anime.DadosAtualizadoAnime dados) {
+        Optional<Anime> animeOpt = repository.findById(id);
+        if (animeOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Anime anime = animeOpt.get();
+        anime.atualizaInfo(dados);
+        repository.save(anime);
+        return ResponseEntity.ok(anime);
+    }
+    
 }
