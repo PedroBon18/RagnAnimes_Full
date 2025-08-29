@@ -1,0 +1,83 @@
+/* Reset básico: zera margens/paddings e deixa box-sizing controlado */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif; /* Fonte padrão */
+  background: #111111; /* Fundo preto */
+  height: 100vh; /* Altura da tela inteira */
+  display: flex; /* Flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  color: #FFFFFF; /* Cor padrão do texto em branco */
+}
+
+/* Caixa do formulário */
+.form-box {
+  background-color: #222121; /* Cinza bem escuro */
+  padding: 30px; /* Espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Sombra externa */
+  width: 320px; /* Largura fixa */
+  text-align: center; /* Conteúdo centralizado */
+}
+
+/* Cor e espaçamento do título "Cadastro" */
+.form-box h2 {
+  margin-bottom: 20px;
+  color: #D72638; /* Vermelho destaque */
+}
+
+/* Campos de entrada */
+input {
+  width: 100%; /* Ocupar toda a largura */
+  padding: 10px; /* Espaçamento interno */
+  margin: 10px 0; /* Espaço entre campos */
+  border: none; /* Sem borda */
+  border-radius: 6px; /* Bordas arredondadas */
+  background: rgba(217,217,213,255); /* Cinza claro */
+  color: #32252B; /* Texto escuro dentro do campo */
+}
+
+/* Cor do texto placeholder dentro dos inputs */
+input::placeholder {
+  color: rgba(116,120,123,255); /* Cinza médio */
+}
+
+/* Botão de cadastro */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f00000; /* Vermelho vivo */
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+/* Efeito hover no botão */
+button:hover {
+  background-color: #D72638; /* Vermelho mais escuro */
+}
+
+/* Área de links (ex: "já tenho uma conta") */
+.links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* Estilo dos links */
+.links a {
+  color: #FF0201; /* Vermelho */
+  text-decoration: none; /* Remove sublinhado padrão */
+}
+
+/* Efeito hover nos links */
+.links a:hover {
+  text-decoration: underline; /* Sublinha ao passar o mouse */
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html> <!-- Documento segue o padrão HTML5 -->
+<html lang="pt-br"> <!-- Define o idioma como português do Brasil -->
+<head>
+  <meta charset="UTF-8"> <!-- Suporte a acentos e caracteres especiais -->
+  <title>Cadastro</title> <!-- Título exibido na aba do navegador -->
+  <link rel="stylesheet" href="register.css"> <!-- Estilo específico para a página de cadastro -->
+</head>
+<body>
+  <!-- Container do formulário -->
+  <div class="form-box">
+    <h2>Cadastro</h2> <!-- Título do formulário -->
+
+    <form>
+      <!-- Campo para o nome -->
+      <input type="text" placeholder="Nome" required>
+      
+      <!-- Campo para e-mail -->
+      <input type="email" placeholder="E-mail" required>
+      
+      <!-- Campo para data de nascimento (será formatado pelo script JS) -->
+      <input id="dataNascimento" type="text" placeholder="Data de nascimento" maxlength="10" required>
+      
+      <!-- Campo para senha -->
+      <input type="password" placeholder="Senha" required>
+      
+      <!-- Campo para confirmar a senha -->
+      <input type="password" placeholder="Confirmar senha" required>
+      
+      <!-- Botão para enviar o formulário -->
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <!-- Link para quem já tem conta -->
+    <div class="links">
+      <a href="login.html">Já tenho uma conta</a>
+    </div>
+  </div>
+
+  <!-- Script JS para formatar automaticamente a data -->
+  <script>
+    const dataInput = document.getElementById('dataNascimento'); 
+    // Seleciona o campo de data de nascimento pelo ID
+
+    dataInput.addEventListener('input', function (e) {
+      let valor = e.target.value.replace(/\D/g, ""); 
+      // Remove tudo que não for número
+      
+      if (valor.length > 2) {
+        valor = valor.slice(0, 2) + "/" + valor.slice(2);
+        // Adiciona a primeira barra após o dia
+      }
+      if (valor.length > 5) {
+        valor = valor.slice(0, 5) + "/" + valor.slice(5, 9);
+        // Adiciona a segunda barra após o mês
+      }
+      e.target.value = valor; 
+      // Atualiza o valor do input já formatado
+    });
+  </script>
+</body>
+</html>

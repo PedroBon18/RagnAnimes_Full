@@ -1,0 +1,78 @@
+/* Reset básico para remover espaçamentos padrão e facilitar o controle */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Faz com que padding e borda sejam incluídos no tamanho total do elemento */
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif; /* Define a fonte da página */
+  background: linear-gradient(120deg, #222121); /* Fundo com gradiente (nesse caso parece só uma cor sólida) */
+  height: 100vh; /* O corpo ocupa toda a altura da tela */
+  display: flex; /* Ativa o flexbox */
+  justify-content: center; /* Centraliza conteúdo horizontalmente */
+  align-items: center; /* Centraliza conteúdo verticalmente */
+  color: #FFFFFF; /* Define cor padrão do texto como branco */
+}
+
+/* Caixa de login */
+.login {
+  background-color: #2F2F2F; /* Fundo cinza escuro */
+  padding: 30px; /* Espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Sombra ao redor da caixa */
+  width: 300px; /* Largura fixa */
+  text-align: center; /* Centraliza o conteúdo dentro da caixa */
+}
+
+/* Título "Login" */
+.login h3 {
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+  color: #ff0201; /* Vermelho forte */
+}
+
+/* Campos de entrada */
+input {
+  width: 100%; /* Preenche toda a largura disponível */
+  padding: 10px; /* Espaçamento interno */
+  margin: 10px 0; /* Espaçamento acima e abaixo */
+  border: none; /* Remove a borda padrão */
+  border-radius: 6px; /* Bordas arredondadas */
+  background: rgba(217,217,213,255); /* Fundo cinza escuro */
+  color: #32252B; /* Texto escuro dentro do campo */
+}
+
+/* Botão principal */
+button {
+  width: 100%; /* Preenche toda a largura */
+  padding: 10px; /* Espaçamento interno */
+  background-color: #f00000; /* Vermelho vivo */
+  border: none; /* Sem borda */
+  border-radius: 6px; /* Bordas arredondadas */
+  color: white; /* Texto branco */
+  font-weight: bold; /* Negrito */
+  cursor: pointer; /* Cursor de mão ao passar por cima */
+  transition: background 0.3s ease; /* Animação suave ao mudar de cor */
+}
+
+/* Efeito hover no botão */
+button:hover {
+  background-color: #D72638; /* Vermelho mais escuro quando passa o mouse */
+}
+
+/* Links adicionais (cadastro e esqueci senha) */
+.links {
+  margin-top: 15px; /* Espaço acima dos links */
+  font-size: 14px; /* Texto menor */
+}
+
+.links a {
+  color: #ff0201; /* Vermelho */
+  text-decoration: none; /* Remove sublinhado */
+  display: block; /* Coloca os links em blocos (um abaixo do outro) */
+  margin-top: 8px; /* Espaço entre eles */
+}
+
+.links a:hover {
+  text-decoration: underline; /* Sublinhado no hover */
+}

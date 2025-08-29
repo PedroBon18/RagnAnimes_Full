@@ -1,0 +1,145 @@
+/* ===== BASE DO SITE ===== */
+body {
+  margin: 0; /* remove espaçamento padrão */
+  padding: 0; /* idem */
+  background-color: #000; /* fundo preto */
+  color: #fff; /* texto branco */
+  font-family: Arial, sans-serif; /* fonte padrão */
+}
+
+/* ===== CABEÇALHO ===== */
+header {
+  background-color: #111; /* fundo levemente diferente do body */
+  padding: 10px 20px;
+  position: sticky; /* fica "grudado" no topo ao rolar */
+  top: 0;
+  z-index: 1000; /* garante que o header fica por cima dos outros elementos */
+}
+
+.navbar {
+  display: flex; /* distribui elementos em linha */
+  align-items: center; /* alinha verticalmente */
+  justify-content: space-between; /* espaço entre logo, menu e busca */
+  flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f00; /* vermelho (combina com os destaques) */
+}
+
+.search-box input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  width: 200px;
+}
+
+.hamburger {
+  display: none; /* só aparece no mobile */
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.menu {
+  list-style: none; /* tira marcadores da lista */
+  display: flex; /* menu em linha */
+  gap: 20px; /* espaço entre os itens */
+}
+
+.menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* ===== RESPONSIVIDADE DO MENU ===== */
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* esconde menu no mobile */
+    flex-direction: column; /* vira lista vertical */
+    background-color: #222;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .menu.active { display: flex; } /* mostra quando ganha a classe "active" */
+  .hamburger { display: block; } /* mostra ícone do menu */
+  .search-box { width: 100%; margin-top: 10px; } /* busca ocupa linha inteira */
+}
+
+/* ===== SEÇÕES DO CARROSSEL ===== */
+.carousel-section {
+  padding: 20px;
+}
+
+.carousel-section h2 {
+  margin-bottom: 10px;
+  color: #f00; /* título vermelho */
+}
+
+/* ===== WRAPPER: segura os botões ===== */
+.carousel-wrapper {
+  position: relative; /* necessário para posicionar os botões absolutos */
+  display: block;
+}
+
+/* ===== A FAIXA DO CARROSSEL ===== */
+.carousel {
+  display: grid;
+  grid-auto-flow: column; /* itens ficam lado a lado */
+  grid-auto-columns: 180px; /* largura fixa de cada card */
+  gap: 10px; /* espaçamento entre os cards */
+  overflow-x: auto; /* ativa rolagem horizontal */
+  overscroll-behavior-x: contain; /* evita scroll extra */
+  scroll-behavior: smooth; /* rolagem suave */
+  scroll-snap-type: x mandatory; /* cada item "encaixa" ao parar */
+  padding: 10px 52px 10px; /* espaço lateral p/ botões não ficarem por cima das capas */
+  
+  /* escondendo scrollbar */
+  -ms-overflow-style: none; /* IE/Edge antigo */
+  scrollbar-width: none; /* Firefox */
+}
+.carousel::-webkit-scrollbar { display: none; } /* Chrome/Safari/Edge */
+
+/* ===== CARDS (imagens) ===== */
+.carousel img {
+  width: 100%;
+  height: 260px;
+  border-radius: 8px; /* bordas arredondadas */
+  object-fit: cover; /* imagem cobre sem distorcer */
+  flex-shrink: 0;
+  scroll-snap-align: start; /* cada capa se alinha no início */
+  display: block;
+}
+
+/* ===== BOTÕES DE NAVEGAÇÃO ===== */
+.carousel-btn {
+  position: absolute; /* flutuando sobre o carrossel */
+  top: 50%; /* centralizado verticalmente */
+  transform: translateY(-50%); /* ajuste fino */
+  background-color: rgba(255, 0, 0, 0.75); /* vermelho transparente */
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 10px;
+  z-index: 10; /* fica acima das capas */
+  line-height: 1;
+  user-select: none; /* evita seleção de texto acidental */
+}
+
+.carousel-btn.left  { left: 8px; }
+.carousel-btn.right { right: 8px; }
+
+/* ===== RESPONSIVIDADE (mobile pequeno) ===== */
+@media (max-width: 480px) {
+  .carousel { 
+    grid-auto-columns: 150px; /* cards mais estreitos */
+    padding: 8px 44px 8px; /* ajusta espaço dos botões */
+  }
+  .carousel img { height: 220px; } /* imagens menores */
+  .carousel-btn { font-size: 24px; padding: 6px 10px; } /* botões menores */
+}
