@@ -10,25 +10,25 @@
   <div class="form-box">
     <h2>Cadastro</h2> <!-- Título do formulário -->
 
-    <form>
+    <form id="register-form">
       <!-- Campo para o nome -->
-      <input type="text" placeholder="Nome" required>
+      <input type="text" id="nome" placeholder="Nome" required>
       
       <!-- Campo para e-mail -->
-      <input type="email" placeholder="E-mail" required>
+      <input type="email" id="email" placeholder="E-mail" required>
       
-      <!-- Campo para data de nascimento (será formatado pelo script JS) -->
+      <!-- Campo para data de nascimento -->
       <input id="dataNascimento" type="text" placeholder="Data de nascimento" maxlength="10" required>
       
       <!-- Campo para senha -->
-      <input type="password" placeholder="Senha" required>
+      <input type="password" id="senha" placeholder="Senha" required>
       
       <!-- Campo para confirmar a senha -->
-      <input type="password" placeholder="Confirmar senha" required>
+      <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required>
       
       <!-- Botão para enviar o formulário -->
       <button type="submit">Cadastrar</button>
-    </form>
+    </form>    
 
     <!-- Link para quem já tem conta -->
     <div class="links">
@@ -57,5 +57,6 @@
       // Atualiza o valor do input já formatado
     });
   </script>
+  <script src="register.js"></script>
 </body>
 </html>
