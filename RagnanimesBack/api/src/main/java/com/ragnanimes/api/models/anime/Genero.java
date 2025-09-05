@@ -9,5 +9,6 @@ public enum Genero {
     ROMANCE,
     SUSPENSE,
     TERROR,
-    ISEKAI
+    ISEKAI,
+    FANTASIA
 }

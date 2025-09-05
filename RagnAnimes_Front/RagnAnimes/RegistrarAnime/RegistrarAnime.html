@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Anime - RagnAnimes</title>
+
+  <!-- Ícone exibido na aba do navegador -->
+  <link rel="shortcut icon" href="/img/favicon/favicon.png" type="image/x-icon">
+
+  <!-- Arquivo CSS específico dessa página -->
+  <link rel="stylesheet" href="RegistrarAnime.css">
+</head>
+<body>
+  <header>
+    <!-- Logo do site -->
+    <h1>
+      <img src="/img/logo/logo.png" alt="logo">
+      <div class="servicos"></div> <!-- Parece estar solto aqui. Verifique se realmente precisa dentro do <h1>. -->
+    </h1>
+
+    <!-- Link para voltar à página inicial -->
+    <a href="/RagnAnimes/index/index.html" class="back-link">Voltar</a>
+  </header>
+
+  <div class="container">
+    <h2>Registrar Anime</h2>
+
+    <!-- Formulário principal -->
+    <form id="anime-form">
+
+      <!-- Nome do anime -->
+      <label for="nome">Nome do Anime:</label>
+      <input type="text" id="nome" required>
+
+      <!-- URL da imagem -->
+      <label for="imagem">URL da Imagem:</label>
+      <input type="text" id="imagem" placeholder="https://..." required>
+
+       <!-- Trailer -->
+       <label for="trailer">Trailer (URL do YouTube):</label>
+       <input type="url" id="trailer" placeholder="https://www.youtube.com/embed/..." required>
+       
+      <!-- Descrição -->
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" rows="4" required></textarea>
+
+         <!-- Estudio do anime -->
+         <label for="estudio">Estudio:</label>
+         <input type="text" id="nome" required>
+
+            <!-- Ano de Lancamento do anime -->
+        <label for="anodeLancamento">Ano de Lançamento:</label>
+        <input type="text" id="nome" required>
+
+      <!-- Categorias
+      <div class="categoria-container">
+         Campo para criar novas categorias 
+        <input type="text" id="nova-categoria" placeholder="Nova categoria">
+        <button type="button" id="adicionar-categoria">Adicionar Categoria</button> -->
+
+        <!-- Lista suspensa para escolher a categoria -->
+        <select id="categoria" required>
+          <option value="SUSPENSE">Selecione uma categoria</option>
+          <option value="ACAO">Ação</option>
+          <option value="AVENTURA">Aventura</option>
+          <option value="FANTASIA">Fantasia</option>
+          <option value="ISEKAI">Isekai</option>
+          <option value="ROMANCE">Romance</option>
+          <option value="COMEDIA">Comédia</option>
+          <option value="DRAMA">Drama</option>
+          <option value="FICCAO">Ficção</option>
+          <option value="TERROR">Terror</option>
+        </select>
+      </div>
+
+      
+
+      <!-- Botão final para salvar o anime -->
+      <div class="form-actions">
+        <button type="submit" id="adicionar-anime">Adicionar Anime</button>
+      </div>
+
+      <!-- Mensagem de feedback (ex: sucesso ou erro) -->
+      <p class="mensagem" id="mensagem"></p>
+    </form>
+  </div>
+  <script src="RegistrarAnime.js"></script>
+</body>
+</html>
