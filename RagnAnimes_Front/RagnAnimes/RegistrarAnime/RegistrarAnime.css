@@ -104,6 +104,27 @@ button:hover {
   width: 220px;
 }
 
+
+/* ================= Anime Id ================= */
+.anime-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;          /* Espaço entre label e select */
+  margin-top: 15px;
+  flex-wrap: wrap;    /* Quebra de linha se precisar */
+}
+
+#anime-id {
+  width: 220px;       /* Tamanho parecido com categoria */
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #444; 
+  background: #222;
+  color: white;
+  font-size: 1rem;
+}
+
+
 /* ================= Mensagem ================= */
 .mensagem {
   margin-top: 10px;
