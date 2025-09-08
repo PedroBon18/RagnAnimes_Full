@@ -32,27 +32,27 @@
 
       <!-- Nome do anime -->
       <label for="nome">Nome do Anime:</label>
-      <input type="text" id="nome" required>
+      <input type="text" id="nome" required maxlength="255">
 
       <!-- URL da imagem -->
       <label for="imagem">URL da Imagem:</label>
-      <input type="text" id="imagem" placeholder="https://..." required>
+      <input type="text" id="imagem" maxlength="1000" placeholder="https://..." required>
 
        <!-- Trailer -->
        <label for="trailer">Trailer (URL do YouTube):</label>
-       <input type="url" id="trailer" placeholder="https://www.youtube.com/embed/..." required>
+       <input type="url" id="trailer" maxlength="1000" placeholder="https://www.youtube.com/embed/..." required>
        
       <!-- Descrição -->
       <label for="descricao">Descrição:</label>
-      <textarea id="descricao" rows="4" required></textarea>
+      <textarea id="descricao" rows="4" required maxlength="1000"></textarea>
 
          <!-- Estudio do anime -->
          <label for="estudio">Estudio:</label>
-         <input type="text" id="estudio" required>
+         <input type="text" id="estudio" required maxlength="255">
 
             <!-- Ano de Lancamento do anime -->
         <label for="anoLancamento">Ano de Lançamento:</label>
-        <input type="text" id="anoLancamento" required>
+        <input type="text" id="anoLancamento" required maxlength="255">
 
       <!-- Categorias
       <div class="categoria-container">
