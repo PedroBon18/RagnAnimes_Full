@@ -1,6 +1,4 @@
 package com.ragnanimes.api.models.anime;
-import java.util.ArrayList;
-
 import com.ragnanimes.api.models.anime.Anime;
 import com.ragnanimes.api.models.anime.DadosCadastroAnime;
 import com.ragnanimes.api.models.anime.Genero;
@@ -23,12 +21,15 @@ public class Anime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;    
-    private String estudio; 
+    private String estudio;
+    @Column(length = 500)
     private String imagem;
     @Enumerated(EnumType.STRING)  
-    private Genero genero;  
+    private Genero genero;
+    @Column(length = 1000)  
     private String sinopse;
     private String anoLancamento;
+    @Column(length = 500)
     private String trailer;
     private boolean ativo = true;
 
