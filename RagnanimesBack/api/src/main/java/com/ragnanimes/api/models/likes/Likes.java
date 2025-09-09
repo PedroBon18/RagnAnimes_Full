@@ -1,5 +1,6 @@
 package com.ragnanimes.api.models.likes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ragnanimes.api.models.anime.Anime;
 
 
@@ -23,6 +24,7 @@ public class Likes {
 
     @ManyToOne
     @JoinColumn(name = "anime_id")
+    @JsonBackReference
     private Anime anime;
 
     public Likes(DadosCadastroLikes dados){

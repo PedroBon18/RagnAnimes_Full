@@ -22,37 +22,37 @@ async function carregarAnime() {
   }
 
   try {
-    // Busca o anime pelo ID (incluindo links/serviços)
+    // Busca o anime pelo ID
     const response = await fetch(`http://localhost:8080/anime/${id}`);
     if (!response.ok) throw new Error("Anime não encontrado");
 
-    const data = await response.json();
+    const anime = await response.json();
+    console.log(anime);
 
     // Preenche os dados do anime
-    imgElem.src = data.anime.imagem;
-    imgElem.alt = data.anime.nome;
-    tituloElem.textContent = data.anime.nome;
-    descricaoElem.textContent = data.anime.sinopse || data.anime.descricao;
+    imgElem.src = anime.imagem;
+    imgElem.alt = anime.nome;
+    tituloElem.textContent = anime.nome;
+    descricaoElem.textContent = anime.sinopse || anime.descricao;
 
     // Exibe o trailer (se existir)
-    if (data.anime.trailer) {
-      trailerIframe.src = data.anime.trailer;
-      trailerIframe.title = `Trailer de ${data.anime.nome}`;
+    if (anime.trailer) {
+      trailerIframe.src = anime.trailer;
+      trailerIframe.title = `Trailer de ${anime.nome}`;
       trailerSection.style.display = "block";
     } else {
       trailerSection.style.display = "none";
     }
 
-    // Preenche os links/serviços
-    servicosContainer.innerHTML = "";
-    if (data.links && data.links.length > 0) {
-      data.links.forEach(servico => {
-        const servicoHTML = `
-          <a href="${servico.link}" target="_blank" class="servico-item">
-            <img src="${servico.imagem}" alt="Ícone de ${servico.nome}" class="servico-icone">
-            <p class="servico-nome">${servico.nome}</p>
-          </a>`;
-        servicosContainer.innerHTML += servicoHTML;
+    servicosContainer.innerHTML = ""; // limpa antes
+    if (anime.likes && anime.likes.length > 0) {
+      anime.likes.forEach(servico => {
+      const servicoHTML = `
+        <a href="${servico.link}" target="_blank" class="servico-item">
+        <img src="${servico.imagem}" alt="Ícone de ${servico.nome}" class="servico-icone">
+        <p class="servico-nome">${servico.nome}</p>
+        </a>`;
+      servicosContainer.innerHTML += servicoHTML;
       });
     }
 

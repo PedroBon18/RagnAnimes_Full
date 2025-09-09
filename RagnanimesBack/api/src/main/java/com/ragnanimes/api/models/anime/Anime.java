@@ -1,4 +1,5 @@
 package com.ragnanimes.api.models.anime;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ragnanimes.api.models.anime.Anime;
 import com.ragnanimes.api.models.anime.DadosCadastroAnime;
 import com.ragnanimes.api.models.anime.Genero;
@@ -37,6 +38,7 @@ public class Anime {
     private List<Comentario> comentarios = new ArrayList<>();
 
     @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Likes> likes = new ArrayList<>();
     
 

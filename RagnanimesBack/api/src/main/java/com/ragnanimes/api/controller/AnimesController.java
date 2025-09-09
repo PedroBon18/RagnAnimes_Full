@@ -36,16 +36,16 @@ public class AnimesController {
     public List<Anime> getAllAnimes() {
         return repository.findAll();
     }
-
     @GetMapping("/{id}")
-    public ResponseEntity<AnimeComLikesDTO> getAnimeComLikes(@PathVariable Integer id) {
+    public ResponseEntity<Anime> getAnimeById(@PathVariable Integer id) {
         Optional<Anime> animeOpt = repository.findById(id);
+
         if (animeOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        List<com.ragnanimes.api.models.likes.Likes> likes = likesRepository.findByAnimeId(id);
-        AnimeComLikesDTO dto = new AnimeComLikesDTO(animeOpt.get(), likes);
-        return ResponseEntity.ok(dto);
+
+        // Retorna apenas o objeto Anime
+        return ResponseEntity.ok(animeOpt.get());
     }
     @PostMapping("/update/{id}")
     @Transactional
