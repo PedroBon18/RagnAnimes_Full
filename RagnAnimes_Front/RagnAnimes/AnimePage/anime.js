@@ -27,7 +27,6 @@ async function carregarAnime() {
     if (!response.ok) throw new Error("Anime não encontrado");
 
     const anime = await response.json();
-    console.log(anime);
 
     // Preenche os dados do anime
     imgElem.src = anime.imagem;

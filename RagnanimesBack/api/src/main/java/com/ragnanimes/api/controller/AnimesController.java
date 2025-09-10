@@ -15,8 +15,8 @@ import java.util.*;
 import com.ragnanimes.api.models.anime.Anime;
 import com.ragnanimes.api.models.anime.AnimeRepository;
 import com.ragnanimes.api.models.anime.DadosCadastroAnime;
-import com.ragnanimes.api.models.likes.LikesRepository;
-import com.ragnanimes.api.models.anime.AnimeComLikesDTO;
+// import com.ragnanimes.api.models.likes.LikesRepository;
+// import com.ragnanimes.api.models.anime.AnimeComLikesDTO;
 
 @RestController
 @RequestMapping("/anime")
@@ -24,8 +24,8 @@ public class AnimesController {
     @Autowired
     private AnimeRepository repository;
 
-    @Autowired
-    private LikesRepository likesRepository;
+    // @Autowired
+    // private LikesRepository likesRepository;
 
     @PostMapping
     @Transactional
