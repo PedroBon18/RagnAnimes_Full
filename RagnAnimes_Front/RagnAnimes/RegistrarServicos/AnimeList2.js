@@ -8,11 +8,7 @@ async function carregarAnimesNoSelect() {
     if (!response.ok) throw new Error("Erro ao buscar animes");
 
     const animes = await response.json();
-
-    // Limpa as opções antigas (mantém apenas o "Novo Id")
-    animeIdSelect.innerHTML = `
-      <option value="0">Novo Id</option>
-    `;
+    
 
     // Adiciona cada anime como <option>
     animes.forEach(anime => {

@@ -18,11 +18,12 @@
   <div class="container">
     <h2>Registrar Serviços</h2>
 
-     <!-- ID do Anime -->
-    <label for="anime-id"></label>
-    <select id="anime-id" required>
-      <option value="0">Novo Anime</option>
-    </select>
+    <form id="servico-form">
+      <!-- ID do Anime -->
+      <label for="anime-id">Selecione o Anime:</label>
+      <select id="anime-id" required>
+        <option value="0">Novo Anime</option>
+      </select>
 
       <!-- Container de serviços -->
       <div id="servicos-container">
@@ -48,48 +49,134 @@
         <button type="submit" id="adicionar-servico">Salvar Serviços</button>
       </div>
 
+      <!-- Botão DELETAR -->
+      <div class="form-actions">
+        <button type="button" id="btn-deletar" class="btn-deletar">DELETAR</button>
+      </div>
+
       <p class="mensagem" id="mensagem"></p>
     </form>
   </div>
 
   <script>
-    let contador = 1;
+    window.addEventListener("DOMContentLoaded", () => {
+      let contador = 1;
 
-    // Função para adicionar novo serviço
-    document.getElementById("add-servico").addEventListener("click", () => {
-      contador++;
+      const form = document.getElementById("servico-form");
+      const animeSelect = document.getElementById("anime-id");
       const container = document.getElementById("servicos-container");
+      const btnAddServico = document.getElementById("add-servico");
+      const btnDeletar = document.getElementById("btn-deletar");
+      const mensagem = document.getElementById("mensagem");
 
-      const novoServico = document.createElement("div");
-      novoServico.classList.add("servico-item");
-      novoServico.innerHTML = `
-        <label for="nome_servico_${contador}">Nome do Serviço:</label>
-        <input type="text" id="nome_servico_${contador}" name="nome_servico[]" placeholder="Ex: Netflix" required>
+      // Adicionar novo serviço
+      btnAddServico.addEventListener("click", () => {
+        contador++;
+        const novoServico = document.createElement("div");
+        novoServico.classList.add("servico-item");
+        novoServico.innerHTML = `
+          <label for="nome_servico_${contador}">Nome do Serviço:</label>
+          <input type="text" id="nome_servico_${contador}" name="nome_servico[]" placeholder="Ex: Netflix" required>
 
-        <label for="url_servico_${contador}">URL do Serviço:</label>
-        <input type="url" id="url_servico_${contador}" name="url_servico[]" placeholder="https://..." required>
+          <label for="url_servico_${contador}">URL do Serviço:</label>
+          <input type="url" id="url_servico_${contador}" name="url_servico[]" placeholder="https://..." required>
 
-        <label for="imagem_${contador}">URL da Imagem:</label>
-        <input type="text" id="imagem_${contador}" name="imagem[]" placeholder="https://..." required>
+          <label for="imagem_${contador}">URL da Imagem:</label>
+          <input type="text" id="imagem_${contador}" name="imagem[]" placeholder="https://..." required>
 
-        <button type="button" class="remover-servico">Remover</button>
-      `;
-      container.appendChild(novoServico);
+          <button type="button" class="remover-servico">Remover</button>
+        `;
+        container.appendChild(novoServico);
 
-      // Evento para remover o serviço recém-adicionado
-      novoServico.querySelector(".remover-servico").addEventListener("click", () => {
-        novoServico.remove();
+        // Remover serviço recém-adicionado
+        novoServico.querySelector(".remover-servico").addEventListener("click", () => {
+          novoServico.remove();
+        });
       });
-    });
 
-    // Remover serviço inicial
-    document.querySelectorAll(".remover-servico").forEach(botao => {
-      botao.addEventListener("click", (e) => {
-        e.target.parentElement.remove();
+      // Remover serviço inicial
+      document.querySelectorAll(".remover-servico").forEach(botao => {
+        botao.addEventListener("click", (e) => {
+          e.target.parentElement.remove();
+        });
+      });
+
+      // Submissão do form
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const animeId = animeSelect.value;
+
+        if (!animeId || animeId === "0") {
+          alert("Selecione um anime válido.");
+          return;
+        }
+
+        const nomes = document.querySelectorAll("input[name='nome_servico[]']");
+        const urls = document.querySelectorAll("input[name='url_servico[]']");
+        const imagens = document.querySelectorAll("input[name='imagem[]']");
+
+        const servicos = [];
+        for (let i = 0; i < nomes.length; i++) {
+          servicos.push({
+            nome: nomes[i].value,
+            link: urls[i].value,
+            imagem: imagens[i].value,
+            conteudo: "Serviço de streaming",
+            anime: { id: parseInt(animeId) }
+          });
+        }
+
+        try {
+          for (const servico of servicos) {
+            const response = await fetch("http://localhost:8080/link", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(servico)
+            });
+            if (!response.ok) {
+              throw new Error("Erro ao salvar serviço: " + (await response.text()));
+            }
+          }
+
+          mensagem.textContent = "Serviços registrados com sucesso!";
+          mensagem.style.color = "green";
+          form.reset();
+        } catch (error) {
+          mensagem.textContent = "Erro: " + error.message;
+          mensagem.style.color = "red";
+        }
+      });
+
+      // Botão DELETAR
+      btnDeletar.addEventListener("click", async () => {
+        const id = animeSelect.value;
+
+        if (!id || id === "0") {
+          alert("Selecione um anime válido para deletar os links.");
+          return;
+        }
+
+        if (!confirm("Tem certeza que deseja desativar TODOS os links deste anime?")) return;
+
+        try {
+          const response = await fetch(`http://localhost:8080/link/toggle/anime/${id}`, {
+            method: "POST",
+          });
+
+          if (response.ok) {
+            alert("Todos os links foram desativados com sucesso!");
+            window.location.reload();
+          } else {
+            alert("Nenhum link encontrado para esse anime.");
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Erro ao conectar com o servidor.");
+        }
       });
     });
   </script>
+
   <script src="AnimeList2.js"></script>
-  <script src="RegistrarServicos.js"></script>
 </body>
 </html>

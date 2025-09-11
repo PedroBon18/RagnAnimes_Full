@@ -127,6 +127,13 @@ button:hover {
   text-align: center;
   color: #f1fa8c;
 }
+button.btn-deletar {
+  background: #b10000;
+}
+
+button.btn-deletar:hover {
+  background: #ff1a1a;
+}
 
 /* ================= Responsivo ================= */
 @media (max-width: 600px) {

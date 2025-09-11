@@ -44,16 +44,18 @@ async function carregarAnime() {
     }
 
     servicosContainer.innerHTML = ""; // limpa antes
+
     if (anime.likes && anime.likes.length > 0) {
       anime.likes
-        .filter(servico => servico.ativo) // só mostra os ativos
-        .forEach(servico => {
-          const servicoHTML = `
-            <a href="${servico.link}" target="_blank" class="servico-item">
-              <img src="${servico.imagem}" alt="Ícone de ${servico.nome}" class="servico-icone">
-              <p class="servico-nome">${servico.nome}</p>
-            </a>`;
-          servicosContainer.innerHTML += servicoHTML;
+        .filter(like => like.ativo === true) // só mantém os ativos
+        .forEach(like => {
+          const likeHTML = `
+            <a href="${like.link}" target="_blank" class="servico-item">
+              <img src="${like.imagem}" alt="Ícone de ${like.nome}" class="servico-icone">
+              <p class="servico-nome">${like.nome}</p>
+            </a>
+          `;
+          servicosContainer.innerHTML += likeHTML;
         });
     }
 
