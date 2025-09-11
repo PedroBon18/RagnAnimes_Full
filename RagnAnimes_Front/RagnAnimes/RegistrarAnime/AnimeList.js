@@ -11,7 +11,6 @@ async function carregarAnimesNoSelect() {
 
     // Limpa as opções antigas (mantém apenas o "Novo Id")
     animeIdSelect.innerHTML = `
-      <option value="">Selecione um Id</option>
       <option value="0">Novo Id</option>
     `;
 
@@ -19,7 +18,7 @@ async function carregarAnimesNoSelect() {
     animes.forEach(anime => {
       const option = document.createElement("option");
       option.value = anime.id;
-      option.textContent = anime.nome;
+      option.textContent = `${anime.id} - ${anime.nome}`;
       animeIdSelect.appendChild(option);
     });
 

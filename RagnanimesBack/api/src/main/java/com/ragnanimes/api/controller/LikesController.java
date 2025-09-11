@@ -31,5 +31,15 @@ public class LikesController {
     public List<Likes> getAnimeLinksById(@PathVariable Integer id){
         return repository.findByAnimeId(id);
     }
+    @PostMapping("/toggle/{id}")
+    @Transactional
+    public void toggleAtivo(@PathVariable Integer id) {
+        Optional<Likes> linkOpt = repository.findById(id);
+        if (linkOpt.isPresent()) {
+            Likes link = linkOpt.get();
+            link.setAtivo(!link.isAtivo()); // inverte o valor atual
+            repository.save(link);
+        }
+}
     
 }

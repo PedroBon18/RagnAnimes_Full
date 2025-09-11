@@ -45,15 +45,18 @@ async function carregarAnime() {
 
     servicosContainer.innerHTML = ""; // limpa antes
     if (anime.likes && anime.likes.length > 0) {
-      anime.likes.forEach(servico => {
-      const servicoHTML = `
-        <a href="${servico.link}" target="_blank" class="servico-item">
-        <img src="${servico.imagem}" alt="Ícone de ${servico.nome}" class="servico-icone">
-        <p class="servico-nome">${servico.nome}</p>
-        </a>`;
-      servicosContainer.innerHTML += servicoHTML;
-      });
+      anime.likes
+        .filter(servico => servico.ativo) // só mostra os ativos
+        .forEach(servico => {
+          const servicoHTML = `
+            <a href="${servico.link}" target="_blank" class="servico-item">
+              <img src="${servico.imagem}" alt="Ícone de ${servico.nome}" class="servico-icone">
+              <p class="servico-nome">${servico.nome}</p>
+            </a>`;
+          servicosContainer.innerHTML += servicoHTML;
+        });
     }
+
 
     // Exibe a seção de detalhes
     errorSection.style.display = "none";

@@ -59,5 +59,19 @@ public class AnimesController {
         repository.save(anime);
         return ResponseEntity.ok(anime);
     }
-    
+    @PostMapping("/ativo/{id}")
+    @Transactional
+    public ResponseEntity<Anime> toggleAtivo(@PathVariable Integer id) {
+        Optional<Anime> animeOpt = repository.findById(id);
+        if (animeOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Anime anime = animeOpt.get();
+        anime.setAtivo(!anime.isAtivo()); // inverte o valor atual
+        repository.save(anime);
+
+        return ResponseEntity.ok(anime);
+    }
+
 }
