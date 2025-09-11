@@ -1,8 +1,6 @@
 package com.ragnanimes.api.models.anime;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ragnanimes.api.models.anime.Anime;
-import com.ragnanimes.api.models.anime.DadosCadastroAnime;
-import com.ragnanimes.api.models.anime.Genero;
 import com.ragnanimes.api.models.comentario.Comentario;
 import com.ragnanimes.api.models.likes.Likes;
 
@@ -21,7 +19,7 @@ public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;    
+    private String nome;
     private String estudio;
     @Column(length = 500)
     private String imagem;
