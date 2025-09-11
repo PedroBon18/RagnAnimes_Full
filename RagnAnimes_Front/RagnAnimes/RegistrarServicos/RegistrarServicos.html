@@ -18,10 +18,11 @@
   <div class="container">
     <h2>Registrar Serviços</h2>
 
-    <form id="servico-form">
-      <!-- ID do anime -->
-      <label for="anime_id">ID do Anime:</label>
-      <input type="number" id="anime_id" name="anime_id" placeholder="Ex: 12" required>
+     <!-- ID do Anime -->
+    <label for="anime-id"></label>
+    <select id="anime-id" required>
+      <option value="0">Novo Anime</option>
+    </select>
 
       <!-- Container de serviços -->
       <div id="servicos-container">
@@ -88,6 +89,7 @@
       });
     });
   </script>
+  <script src="AnimeList2.js"></script>
   <script src="RegistrarServicos.js"></script>
 </body>
 </html>
