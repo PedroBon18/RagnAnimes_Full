@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.ragnanimes.api.models.anime.Anime;
 import com.ragnanimes.api.models.anime.AnimeRepository;
@@ -73,5 +74,30 @@ public class AnimesController {
 
         return ResponseEntity.ok(anime);
     }
-
+    // Retorna id, nome e imagem
+    @GetMapping("/lista-com-imagem")
+    public List<Map<String, Object>> listarIdNomeImagem() {
+        
+        return repository.findAll().stream()
+            .map(anime -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", anime.getId());
+                map.put("nome", anime.getNome());
+                map.put("imagem", anime.getImagem());
+                map.put("genero", anime.getGenero());
+                return map;
+            })
+            .collect(Collectors.toList());
+    }
+    @GetMapping("/lista-basica")
+    public List<Map<String, Object>> listarIdENome() {
+        return repository.findAll().stream()
+            .map(anime -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", anime.getId());
+                map.put("nome", anime.getNome());
+                return map;
+            })
+            .collect(Collectors.toList());
+    }
 }

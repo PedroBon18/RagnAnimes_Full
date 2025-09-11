@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-      const response = await fetch("http://localhost:8080/anime");
+      const response = await fetch("http://localhost:8080/anime/lista-com-imagem");
+      console.log(response);
       if (!response.ok) throw new Error("Erro ao carregar animes");
       const animes = await response.json();
   
